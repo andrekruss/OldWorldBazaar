@@ -1,0 +1,20 @@
+POST http://localhost:5194/api/v1/customers/register
+Content-Type: application/json
+
+{
+    "email": "andre@email.com",
+    "plainPassword": "123456",
+    "firstName": "andre",
+    "lastName": "kruss",
+    "address": {
+        "street": "Av. Humberto Blablabla",
+        "district": "Centro",
+        "number": "123",
+        "complement": "",
+        "reference": "perto do hospital",
+        "zipCode": "11111-222",
+        "city": "Campinas",
+        "state": "SP",
+        "country": "BR"
+    }
+}
