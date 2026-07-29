@@ -1,0 +1,9 @@
+### Login
+
+POST http://localhost:5194/api/v1/auth/login
+
+Content-Type: application/json
+{
+    "email": "andre@email.com",
+    "password": "123456"
+}
