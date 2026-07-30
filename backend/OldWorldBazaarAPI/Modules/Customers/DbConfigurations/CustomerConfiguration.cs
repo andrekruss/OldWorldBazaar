@@ -28,7 +28,7 @@ namespace OldWorldBazaarAPI.Modules.Customers.DbConfigurations
                 .IsRequired();
 
             builder.HasOne(c => c.CustomerAccount)
-                .WithOne()
+                .WithOne(a => a.Customer)
                 .HasForeignKey<Customer>(c => c.AccountId)
                 .OnDelete(DeleteBehavior.Cascade);         
         }

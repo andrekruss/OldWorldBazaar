@@ -5,6 +5,7 @@ import Input from "../../../shared/generic/components/inputs/Input";
 import Button from "../../../shared/generic/components/buttons/Button";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { registerCustomerSchema, type RegisterCustomerForm } from "../../schema/registerCustomerSchema";
+import { registerCustomer } from "../../api/customerService";
 
 
 export default function RegisterCustomerForm(){
@@ -17,8 +18,8 @@ export default function RegisterCustomerForm(){
         
         const { confirmPassword, ...request } = data;
 
-        console.log(request);
-        //await registerCustomer(request);
+        const costumerResponse = await registerCustomer(request);
+        console.log(costumerResponse);
     };
 
     return (

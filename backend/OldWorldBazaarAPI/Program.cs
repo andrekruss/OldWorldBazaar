@@ -30,6 +30,18 @@ builder.Services.AddScoped<ICustomerService, CustomerService>();
 // Controllers
 builder.Services.AddControllers();
 
+// CORS
+builder.Services.AddCors(options =>
+{
+    options.AddPolicy("Frontend", policy =>
+    {
+        policy
+            .WithOrigins("http://localhost:5173")
+            .AllowAnyHeader()
+            .AllowAnyMethod();
+    });
+});
+
 var app = builder.Build();
 
 // Configure the HTTP request pipeline.
@@ -40,10 +52,19 @@ var app = builder.Build();
 
 //app.UseHttpsRedirection();
 
+using (var scope = app.Services.CreateScope())
+{
+    var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+
+    dbContext.Database.Migrate();
+}
+
 app.UseRouting();
 // app.UseAuthentication();
 // app.UseAuthorization();
 app.MapControllers();
+
+app.UseCors("Frontend");
 
 app.Run();
 
