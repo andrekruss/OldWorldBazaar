@@ -1,9 +1,10 @@
+using Microsoft.EntityFrameworkCore;
 using OldWorldBazaarAPI.Modules.Accounts.Entities;
 using OldWorldBazaarAPI.Modules.Accounts.Enums;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Requests;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Responses;
-using OldWorldBazaarAPI.Modules.Customers.DTOs.Shared;
 using OldWorldBazaarAPI.Modules.Customers.Entities;
+using OldWorldBazaarAPI.Modules.Customers.Exceptions;
 using OldWorldBazaarAPI.Modules.Customers.Mappings;
 using OldWorldBazaarAPI.Shared.Database;
 
@@ -20,6 +21,10 @@ namespace OldWorldBazaarAPI.Modules.Customers.Services
 
         public async Task<CustomerResponse> CreateCustomerAsync(CreateCustomerRequest request)
         {    
+            var existingAccount = await _dbContext.Accounts.FirstOrDefaultAsync(a => a.Email == request.Email);
+            if (existingAccount != null)
+                throw new EmailAlreadyRegisteredException(request.Email);
+
             Account account = new Account()
             {
                 Email = request.Email,

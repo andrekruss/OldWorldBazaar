@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Requests;
+using OldWorldBazaarAPI.Modules.Customers.Exceptions;
 using OldWorldBazaarAPI.Modules.Customers.Services;
 
 namespace OldWorldBazaarAPI.Modules.Customers.Controllers
@@ -21,12 +22,11 @@ namespace OldWorldBazaarAPI.Modules.Customers.Controllers
         public async Task<IActionResult> Register([FromBody] CreateCustomerRequest createCustomerRequest)
         {
             var customer = await _customerService.CreateCustomerAsync(createCustomerRequest);
-
             return CreatedAtAction(
                 nameof(GetById),
                 new { id = customer.Id },
                 customer
-            );
+            );        
         }
 
         [HttpGet("{id}")]

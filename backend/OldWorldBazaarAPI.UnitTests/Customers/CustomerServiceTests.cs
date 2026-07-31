@@ -3,6 +3,7 @@ using Microsoft.EntityFrameworkCore;
 using OldWorldBazaarAPI.Modules.Accounts.Enums;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Requests;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Shared;
+using OldWorldBazaarAPI.Modules.Customers.Exceptions;
 using OldWorldBazaarAPI.Modules.Customers.Services;
 using OldWorldBazaarAPI.UnitTests.Shared;
 using OldWorldBazaarAPI.UnitTests.Shared.MockDataBuilders.Customers;
@@ -60,6 +61,28 @@ public class CustomerServiceTests : DatabaseTestBase
         dbCustomer.Addresses.Should().ContainSingle();
         dbCustomer.Addresses.First().Should().BeEquivalentTo(createCustomerRequest.Address, options => options
             .ExcludingMissingMembers()
+        );
+    }
+
+    [Fact]
+    public async Task CreateCustomerAsync_WhenEmailIsAlreadyRegistered_ShouldThrow()
+    {
+        // ARRANGE
+        var customerService = new CustomerService(Context);
+
+        var createCustomerRequest = _customerRequestBuilder.BuildCreateCustomerRequest();
+
+        var response = await customerService.CreateCustomerAsync(createCustomerRequest);
+
+        var createCustomerRequestWithDuplicatedEmail = 
+            _customerRequestBuilder.BuildCreateCustomerRequest()
+            with {
+                Email = createCustomerRequest.Email
+            };
+
+        // ACT/ASSERT
+        await Assert.ThrowsAsync<EmailAlreadyRegisteredException>(
+            () => customerService.CreateCustomerAsync(createCustomerRequestWithDuplicatedEmail)
         );
     }
 }

@@ -2,6 +2,7 @@ using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using OldWorldBazaarAPI.Modules.Customers.Services;
 using OldWorldBazaarAPI.Shared.Database;
+using OldWorldBazaarAPI.Shared.Middlewares;
 
 var builder = WebApplication.CreateBuilder(args);
 
@@ -58,6 +59,8 @@ using (var scope = app.Services.CreateScope())
 
     dbContext.Database.Migrate();
 }
+
+app.UseMiddleware<ExceptionMiddleware>();
 
 app.UseRouting();
 // app.UseAuthentication();
