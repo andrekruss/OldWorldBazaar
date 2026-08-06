@@ -1,7 +1,6 @@
 using Asp.Versioning;
 using Microsoft.AspNetCore.Mvc;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Requests;
-using OldWorldBazaarAPI.Modules.Customers.Exceptions;
 using OldWorldBazaarAPI.Modules.Customers.Services;
 
 namespace OldWorldBazaarAPI.Modules.Customers.Controllers
