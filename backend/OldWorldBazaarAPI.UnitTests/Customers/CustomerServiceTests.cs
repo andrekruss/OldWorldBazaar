@@ -1,9 +1,7 @@
 using FluentAssertions;
 using Microsoft.EntityFrameworkCore;
 using OldWorldBazaarAPI.Modules.Accounts.Enums;
-using OldWorldBazaarAPI.Modules.Customers.DTOs.Requests;
-using OldWorldBazaarAPI.Modules.Customers.DTOs.Shared;
-using OldWorldBazaarAPI.Modules.Customers.Exceptions;
+using OldWorldBazaarAPI.Modules.Accounts.Exceptions;
 using OldWorldBazaarAPI.Modules.Customers.Services;
 using OldWorldBazaarAPI.UnitTests.Shared;
 using OldWorldBazaarAPI.UnitTests.Shared.MockDataBuilders.Customers;

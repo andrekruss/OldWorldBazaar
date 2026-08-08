@@ -1,10 +1,10 @@
 using Microsoft.EntityFrameworkCore;
 using OldWorldBazaarAPI.Modules.Accounts.Entities;
 using OldWorldBazaarAPI.Modules.Accounts.Enums;
+using OldWorldBazaarAPI.Modules.Accounts.Exceptions;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Requests;
 using OldWorldBazaarAPI.Modules.Customers.DTOs.Responses;
 using OldWorldBazaarAPI.Modules.Customers.Entities;
-using OldWorldBazaarAPI.Modules.Customers.Exceptions;
 using OldWorldBazaarAPI.Modules.Customers.Mappings;
 using OldWorldBazaarAPI.Shared.Database;
 

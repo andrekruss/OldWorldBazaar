@@ -1,8 +1,8 @@
 using System.Net;
-using OldWorldBazaarAPI.Modules.Customers.Exceptions.ErrorCodes;
+using OldWorldBazaarAPI.Modules.Accounts.Exceptions.ErrorCodes;
 using OldWorldBazaarAPI.Shared.Exceptions;
 
-namespace OldWorldBazaarAPI.Modules.Customers.Exceptions
+namespace OldWorldBazaarAPI.Modules.Accounts.Exceptions
 {
     public class EmailAlreadyRegisteredException : DomainException
     {
@@ -10,7 +10,7 @@ namespace OldWorldBazaarAPI.Modules.Customers.Exceptions
         : base(
             $"The email {email} is already registered",
             HttpStatusCode.Conflict,
-            CustomerErrorCodes.CustomerEmailAlreadyRegistered
+            AccountErrorCodes.EmailAlreadyRegistered
         )
         {}
     }

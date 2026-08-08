@@ -19,6 +19,7 @@
 
   <ItemGroup>
     <Folder Include="Modules\Auth\Services\" />
+    <Folder Include="Modules\Sellers\Exceptions\" />
   </ItemGroup>
 
 </Project>
