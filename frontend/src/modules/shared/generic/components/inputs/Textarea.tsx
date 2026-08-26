@@ -1,0 +1,30 @@
+import type { TextareaHTMLAttributes } from "react";
+
+interface TextareaProps
+    extends TextareaHTMLAttributes<HTMLTextAreaElement> {}
+
+export default function Textarea({
+    className = "",
+    ...props
+}: TextareaProps) {
+    return (
+        <textarea
+            className={`
+                w-full rounded-lg border border-stone-300
+                px-3 py-2
+                text-stone-900
+                placeholder:text-stone-400
+                transition
+                focus:border-amber-700
+                focus:outline-none
+                focus:ring-2
+                focus:ring-amber-200
+                disabled:bg-stone-100
+                disabled:text-stone-500
+                resize-y
+                ${className}
+            `}
+            {...props}
+        />
+    );
+}
