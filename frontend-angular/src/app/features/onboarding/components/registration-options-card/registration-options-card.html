@@ -1,0 +1,36 @@
+<div class="w-full max-w-md rounded-3xl bg-white p-8 shadow-xl">
+  <div class="flex flex-col items-center text-center">
+    <div class="flex h-16 w-16 items-center justify-center rounded-full bg-amber-100 text-3xl shadow-sm">
+        🏺
+    </div>
+
+    <h1 class="mt-5 text-2xl font-bold text-stone-900">
+        Join Old World Bazaar
+    </h1>
+
+    <p class="mt-2 max-w-sm text-sm text-stone-600">
+        Choose how you'd like to begin your journey.
+    </p>
+  </div>
+
+  <div class="mt-8 grid gap-4">
+
+    <app-account-type-card
+      [cardData]="customerCardData"
+    />
+
+    <app-account-type-card
+      [cardData]="sellerCardData"
+    />
+  </div>
+
+  <div class="mt-8 border-t border-stone-200 pt-6 text-center text-sm text-stone-600">
+      Already have an account?
+      <a ...
+          routerLink="/login"
+          class="font-semibold text-amber-700 transition hover:text-amber-800 hover:underline"
+      >
+          Sign in
+      </a>
+  </div>
+</div>
