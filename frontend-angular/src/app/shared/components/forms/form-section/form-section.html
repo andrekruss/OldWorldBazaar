@@ -1,0 +1,12 @@
+<section class="space-y-5 mb-8">
+  <h2 class="border-b border-stone-200 pb-2 text-lg font-semibold text-stone-900">
+    {{ title() }}
+  </h2>
+
+  <div
+    class="grid gap-4"
+    [class.md:grid-cols-2]="numberOfColumns() === 2"
+  >
+    <ng-content />
+  </div>
+</section>

@@ -1,0 +1,116 @@
+<div class="w-full max-w-xl rounded-3xl bg-white p-8 shadow-xl">
+  <form>
+    <app-form-section title="Account Information">
+      <app-form-field
+        label="Email"
+        [required]="true"
+      >
+        <app-input
+          type="email"
+          placeholder="john@email.com"
+        />
+      </app-form-field>
+
+      <app-form-field
+        label="Password"
+        [required]="true"
+      >
+        <app-input type="password" />
+      </app-form-field>
+
+      <app-form-field
+        label="Confirm Password"
+        [required]="true"
+      >
+        <app-input type="password" />
+      </app-form-field>
+    </app-form-section>
+
+    <app-form-section title="Personal Information">
+      <app-form-field
+        label="First Name"
+        [required]="true"
+      >
+        <app-input placeholder="John" />
+      </app-form-field>
+
+      <app-form-field
+        label="Last Name"
+        [required]="true"
+      >
+        <app-input placeholder="Doe" />
+      </app-form-field>
+
+      <app-form-field label="Phone Number">
+        <app-input />
+      </app-form-field>
+    </app-form-section>
+
+    <app-form-section
+      title="Address"
+      [numberOfColumns]="2"
+    >
+      <app-form-field
+        label="Street"
+        [required]="true"
+      >
+        <app-input placeholder="Rua Alberto Silva" />
+      </app-form-field>
+
+      <app-form-field
+        label="District"
+        [required]="true"
+      >
+        <app-input placeholder="Centro" />
+      </app-form-field>
+
+      <app-form-field label="Number">
+        <app-input placeholder="45" />
+      </app-form-field>
+
+      <app-form-field label="Complement">
+        <app-input />
+      </app-form-field>
+
+      <app-form-field label="Reference">
+        <app-input placeholder="perto da praça" />
+      </app-form-field>
+
+      <app-form-field
+        label="Zip Code"
+        [required]="true"
+      >
+        <app-input placeholder="00000-000" />
+      </app-form-field>
+
+      <app-form-field
+        label="City"
+        [required]="true"
+      >
+        <app-input />
+      </app-form-field>
+
+      <app-form-field
+        label="State"
+        [required]="true"
+      >
+        <app-input />
+      </app-form-field>
+
+      <app-form-field
+        label="Country"
+        [required]="true"
+      >
+        <app-input />
+      </app-form-field>
+    </app-form-section>
+
+    <div class="mt-8">
+      <app-button
+        text="Register"
+        type="submit"
+      />
+    </div>
+
+  </form>
+</div>

@@ -1,0 +1,53 @@
+<div class="w-full max-w-xl rounded-3xl bg-white p-8 shadow-xl">
+  <form>
+    <app-form-section title="Account Information">
+      <app-form-field
+        label="Name"
+        [required]="true"
+      >
+        <app-input
+          placeholder="MyCompanyName"
+        />
+      </app-form-field>
+
+      <app-form-field
+        label="Email"
+        [required]="true"
+      >
+        <app-input
+          type="email"
+          placeholder="company@mail.com"
+        />
+      </app-form-field>
+
+      <app-form-field
+        label="Password"
+        [required]="true"
+      >
+        <app-input type="password" />
+      </app-form-field>
+
+      <app-form-field
+        label="Confirm Password"
+        [required]="true"
+      >
+        <app-input type="password" />
+      </app-form-field>
+
+      <app-form-field
+        label="About"
+      >
+        <app-textarea
+          placeholder="Tell us about your company"
+          [rows]="5"
+        />
+      </app-form-field>
+    </app-form-section>
+    <div class="mt-8">
+      <app-button
+        text="Register"
+        type="submit"
+      />
+    </div>
+  </form>
+</div>

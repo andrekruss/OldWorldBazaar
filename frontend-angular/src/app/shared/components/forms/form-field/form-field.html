@@ -1,0 +1,17 @@
+<div class="flex flex-col gap-2">
+  <label class="text-sm font-medium text-stone-700">
+    {{ label() }}
+
+    @if (required()) {
+      <span class="ml-1 text-red-500">*</span>
+    }
+  </label>
+
+  <ng-content />
+
+  @if (error()) {
+    <span class="text-sm text-red-500">
+      {{ error() }}
+    </span>
+  }
+</div>
