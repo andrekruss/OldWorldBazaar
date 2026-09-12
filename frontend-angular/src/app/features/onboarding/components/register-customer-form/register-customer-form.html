@@ -1,5 +1,8 @@
 <div class="w-full max-w-xl rounded-3xl bg-white p-8 shadow-xl">
-  <form>
+  <form
+    [formGroup]="form"
+    (ngSubmit)="onRegister()"
+  >
     <app-form-section title="Account Information">
       <app-form-field
         label="Email"
