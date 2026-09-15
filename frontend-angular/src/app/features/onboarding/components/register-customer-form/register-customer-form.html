@@ -1,31 +1,40 @@
 <div class="w-full max-w-xl rounded-3xl bg-white p-8 shadow-xl">
   <form
-    [formGroup]="form"
-    (ngSubmit)="onRegister()"
+    [formRoot]="form"
   >
     <app-form-section title="Account Information">
       <app-form-field
         label="Email"
         [required]="true"
+        [field]="form.email"
       >
         <app-input
           type="email"
           placeholder="john@email.com"
+          [formField]="form.email"
         />
       </app-form-field>
 
       <app-form-field
         label="Password"
         [required]="true"
+        [field]="form.password"
       >
-        <app-input type="password" />
+        <app-input
+          type="password"
+          [formField]="form.password"
+        />
       </app-form-field>
 
       <app-form-field
         label="Confirm Password"
         [required]="true"
+        [field]="form.confirmPassword"
       >
-        <app-input type="password" />
+        <app-input
+          type="password"
+          [formField]="form.confirmPassword"
+        />
       </app-form-field>
     </app-form-section>
 
@@ -33,19 +42,29 @@
       <app-form-field
         label="First Name"
         [required]="true"
+        [field]="form.firstName"
       >
-        <app-input placeholder="John" />
+        <app-input
+          placeholder="John"
+          [formField]="form.firstName"
+        />
       </app-form-field>
 
       <app-form-field
         label="Last Name"
         [required]="true"
+        [field]="form.lastName"
       >
-        <app-input placeholder="Doe" />
+        <app-input
+          placeholder="Doe"
+          [formField]="form.lastName"
+        />
       </app-form-field>
 
-      <app-form-field label="Phone Number">
-        <app-input />
+      <app-form-field label="Phone Number" [field]="form.phone">
+        <app-input
+          [formField]="form.phone"
+        />
       </app-form-field>
     </app-form-section>
 
@@ -56,55 +75,84 @@
       <app-form-field
         label="Street"
         [required]="true"
+        [field]="form.street"
       >
-        <app-input placeholder="Rua Alberto Silva" />
+        <app-input
+          placeholder="Rua Alberto Silva"
+          [formField]="form.street"
+        />
       </app-form-field>
 
       <app-form-field
         label="District"
         [required]="true"
+        [field]="form.district"
       >
-        <app-input placeholder="Centro" />
+        <app-input
+          placeholder="Centro"
+          [formField]="form.district"
+        />
       </app-form-field>
 
-      <app-form-field label="Number">
-        <app-input placeholder="45" />
+      <app-form-field label="Number" [field]="form.number">
+        <app-input
+          placeholder="45"
+          [formField]="form.number"
+        />
       </app-form-field>
 
-      <app-form-field label="Complement">
-        <app-input />
+      <app-form-field label="Complement" [field]="form.complement">
+        <app-input
+          [formField]="form.complement"
+        />
       </app-form-field>
 
-      <app-form-field label="Reference">
-        <app-input placeholder="perto da praça" />
+      <app-form-field label="Reference" [field]="form.reference">
+        <app-input
+          placeholder="perto da praça"
+          [formField]="form.reference"
+        />
       </app-form-field>
 
       <app-form-field
         label="Zip Code"
         [required]="true"
+        [field]="form.zipCode"
       >
-        <app-input placeholder="00000-000" />
+        <app-input
+          placeholder="00000-000"
+          [formField]="form.zipCode"
+        />
       </app-form-field>
 
       <app-form-field
         label="City"
         [required]="true"
+        [field]="form.city"
       >
-        <app-input />
+        <app-input
+          [formField]="form.city"
+        />
       </app-form-field>
 
       <app-form-field
         label="State"
         [required]="true"
+        [field]="form.state"
       >
-        <app-input />
+        <app-input
+          [formField]="form.state"
+        />
       </app-form-field>
 
       <app-form-field
         label="Country"
         [required]="true"
+        [field]="form.country"
       >
-        <app-input />
+        <app-input
+          [formField]="form.country"
+        />
       </app-form-field>
     </app-form-section>
 
@@ -112,6 +160,7 @@
       <app-button
         text="Register"
         type="submit"
+        [disabled]="form().submitting()"
       />
     </div>
 

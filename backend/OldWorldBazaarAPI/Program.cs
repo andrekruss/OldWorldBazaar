@@ -1,6 +1,7 @@
 using Asp.Versioning;
 using Microsoft.EntityFrameworkCore;
 using OldWorldBazaarAPI.Modules.Customers.Services;
+using OldWorldBazaarAPI.Modules.Sellers.Services;
 using OldWorldBazaarAPI.Shared.Database;
 using OldWorldBazaarAPI.Shared.Middlewares;
 
@@ -27,6 +28,7 @@ builder.Services.AddDbContext<AppDbContext>(options =>
 
 // Services
 builder.Services.AddScoped<ICustomerService, CustomerService>();
+builder.Services.AddScoped<ISellerService, SellerService>();
 
 // Controllers
 builder.Services.AddControllers();
@@ -37,7 +39,7 @@ builder.Services.AddCors(options =>
     options.AddPolicy("Frontend", policy =>
     {
         policy
-            .WithOrigins("http://localhost:5173")
+            .WithOrigins("http://localhost:4200")
             .AllowAnyHeader()
             .AllowAnyMethod();
     });

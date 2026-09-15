@@ -1,5 +1,5 @@
-import { Component, input } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Component, input, ChangeDetectionStrategy } from '@angular/core';
+import { RouterLink } from '@angular/router';
 
 export interface AccountTypeCardData {
   title: string;
@@ -12,6 +12,7 @@ export interface AccountTypeCardData {
   selector: 'app-account-type-card',
   imports: [RouterLink],
   templateUrl: './account-type-card.html',
+  changeDetection: ChangeDetectionStrategy.Eager,
   styleUrl: './account-type-card.css',
 })
 export class AccountTypeCard {

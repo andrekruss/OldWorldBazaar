@@ -1,11 +1,15 @@
 <div class="w-full max-w-xl rounded-3xl bg-white p-8 shadow-xl">
-  <form>
+  <form [formRoot]="form">
+
     <app-form-section title="Account Information">
+
       <app-form-field
         label="Name"
         [required]="true"
+        [field]="form.name"
       >
         <app-input
+          [formField]="form.name"
           placeholder="MyCompanyName"
         />
       </app-form-field>
@@ -13,8 +17,10 @@
       <app-form-field
         label="Email"
         [required]="true"
+        [field]="form.email"
       >
         <app-input
+          [formField]="form.email"
           type="email"
           placeholder="company@mail.com"
         />
@@ -23,31 +29,45 @@
       <app-form-field
         label="Password"
         [required]="true"
+        [field]="form.password"
       >
-        <app-input type="password" />
+        <app-input
+          [formField]="form.password"
+          type="password"
+        />
       </app-form-field>
 
       <app-form-field
         label="Confirm Password"
         [required]="true"
+        [field]="form.confirmPassword"
       >
-        <app-input type="password" />
+        <app-input
+          [formField]="form.confirmPassword"
+          type="password"
+        />
       </app-form-field>
 
       <app-form-field
         label="About"
+        [field]="form.about"
       >
         <app-textarea
+          [formField]="form.about"
           placeholder="Tell us about your company"
           [rows]="5"
         />
       </app-form-field>
+
     </app-form-section>
+
     <div class="mt-8">
       <app-button
         text="Register"
         type="submit"
+        [disabled]="form().submitting()"
       />
     </div>
+
   </form>
 </div>

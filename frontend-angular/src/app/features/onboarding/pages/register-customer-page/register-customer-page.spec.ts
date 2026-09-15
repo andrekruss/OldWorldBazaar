@@ -1,4 +1,5 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
+import { beforeEach, describe, expect, it } from 'vitest';
 
 import { RegisterCustomerPage } from './register-customer-page';
 
@@ -13,10 +14,18 @@ describe('RegisterCustomerPage', () => {
 
     fixture = TestBed.createComponent(RegisterCustomerPage);
     component = fixture.componentInstance;
-    await fixture.whenStable();
+    fixture.detectChanges();
   });
 
   it('should create', () => {
     expect(component).toBeTruthy();
+  });
+
+  it('should render the register customer form', () => {
+    const form = fixture.nativeElement.querySelector(
+      'app-register-customer-form'
+    );
+
+    expect(form).toBeTruthy();
   });
 });

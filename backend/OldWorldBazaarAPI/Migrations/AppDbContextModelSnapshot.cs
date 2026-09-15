@@ -164,6 +164,136 @@ namespace OldWorldBazaarAPI.Migrations
                     b.ToTable("CustomersAddresses", (string)null);
                 });
 
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Sellers.Entities.Seller", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("About")
+                        .HasMaxLength(1000)
+                        .HasColumnType("character varying(1000)");
+
+                    b.Property<int>("AccountId")
+                        .HasColumnType("integer");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("AccountId");
+
+                    b.ToTable("Sellers", (string)null);
+                });
+
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Stores.Entities.Store", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("Name")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("PhoneNumber")
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.Property<int>("SellerId")
+                        .HasColumnType("integer");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("SellerId");
+
+                    b.ToTable("Stores", (string)null);
+                });
+
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Stores.Entities.StoreAddress", b =>
+                {
+                    b.Property<int>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("integer");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<int>("Id"));
+
+                    b.Property<string>("City")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Complement")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Country")
+                        .IsRequired()
+                        .HasMaxLength(2)
+                        .HasColumnType("character varying(2)");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("timestamp with time zone")
+                        .HasDefaultValueSql("CURRENT_TIMESTAMP");
+
+                    b.Property<string>("District")
+                        .IsRequired()
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("Number")
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<string>("Reference")
+                        .HasMaxLength(100)
+                        .HasColumnType("character varying(100)");
+
+                    b.Property<string>("State")
+                        .IsRequired()
+                        .HasMaxLength(10)
+                        .HasColumnType("character varying(10)");
+
+                    b.Property<int>("StoreId")
+                        .HasColumnType("integer");
+
+                    b.Property<string>("Street")
+                        .IsRequired()
+                        .HasMaxLength(200)
+                        .HasColumnType("character varying(200)");
+
+                    b.Property<string>("ZipCode")
+                        .IsRequired()
+                        .HasMaxLength(20)
+                        .HasColumnType("character varying(20)");
+
+                    b.HasKey("Id");
+
+                    b.HasIndex("StoreId")
+                        .IsUnique();
+
+                    b.ToTable("StoresAddresses", (string)null);
+                });
+
             modelBuilder.Entity("OldWorldBazaarAPI.Modules.Customers.Entities.Customer", b =>
                 {
                     b.HasOne("OldWorldBazaarAPI.Modules.Accounts.Entities.Account", "CustomerAccount")
@@ -186,6 +316,39 @@ namespace OldWorldBazaarAPI.Migrations
                     b.Navigation("Customer");
                 });
 
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Sellers.Entities.Seller", b =>
+                {
+                    b.HasOne("OldWorldBazaarAPI.Modules.Accounts.Entities.Account", "SellerAccount")
+                        .WithMany()
+                        .HasForeignKey("AccountId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("SellerAccount");
+                });
+
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Stores.Entities.Store", b =>
+                {
+                    b.HasOne("OldWorldBazaarAPI.Modules.Sellers.Entities.Seller", "Seller")
+                        .WithMany("Stores")
+                        .HasForeignKey("SellerId")
+                        .OnDelete(DeleteBehavior.Restrict)
+                        .IsRequired();
+
+                    b.Navigation("Seller");
+                });
+
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Stores.Entities.StoreAddress", b =>
+                {
+                    b.HasOne("OldWorldBazaarAPI.Modules.Stores.Entities.Store", "Store")
+                        .WithOne("Address")
+                        .HasForeignKey("OldWorldBazaarAPI.Modules.Stores.Entities.StoreAddress", "StoreId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.Navigation("Store");
+                });
+
             modelBuilder.Entity("OldWorldBazaarAPI.Modules.Accounts.Entities.Account", b =>
                 {
                     b.Navigation("Customer");
@@ -194,6 +357,17 @@ namespace OldWorldBazaarAPI.Migrations
             modelBuilder.Entity("OldWorldBazaarAPI.Modules.Customers.Entities.Customer", b =>
                 {
                     b.Navigation("Addresses");
+                });
+
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Sellers.Entities.Seller", b =>
+                {
+                    b.Navigation("Stores");
+                });
+
+            modelBuilder.Entity("OldWorldBazaarAPI.Modules.Stores.Entities.Store", b =>
+                {
+                    b.Navigation("Address")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

@@ -16,4 +16,6 @@
   [placeholder]="placeholder()"
   [disabled]="disabled()"
   [rows]="rows()"
+  [value]="value()"
+  (input)="value.set($any($event.target).value)"
 ></textarea>

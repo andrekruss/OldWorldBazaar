@@ -11,6 +11,25 @@ services:
       - "5432:5432"
     volumes:
       - oldworldbazaar_pgdata:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U postgres -d oldworldbazaar"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+  api:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    container_name: oldworldbazaar-api
+    restart: always
+    depends_on:
+      postgres:
+        condition: service_healthy
+    ports:
+      - "5194:8080"
+    environment:
+      ConnectionStrings__DefaultConnection: "Host=postgres;Port=5432;Database=oldworldbazaar;Username=postgres;Password=postgres"
 
 volumes:
   oldworldbazaar_pgdata:

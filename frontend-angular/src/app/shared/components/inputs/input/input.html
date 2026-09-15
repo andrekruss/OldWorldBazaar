@@ -2,6 +2,8 @@
   [type]="type()"
   [placeholder]="placeholder()"
   [disabled]="disabled()"
+  [value]="value()"
+  (input)="value.set($any($event.target).value)"
   class="
     w-full rounded-lg border border-stone-300
     px-3 py-2

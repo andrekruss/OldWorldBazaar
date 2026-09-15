@@ -5,17 +5,13 @@ FROM mcr.microsoft.com/dotnet/sdk:9.0 AS build
 
 WORKDIR /src
 
-# Copia primeiro os arquivos de solução/projeto
 COPY OldWorldBazaarAPI.sln ./
 COPY OldWorldBazaarAPI/*.csproj OldWorldBazaarAPI/
 
-# Restaura dependências
-RUN dotnet restore
+RUN dotnet restore OldWorldBazaarAPI/OldWorldBazaarAPI.csproj
 
-# Agora copia o restante do código
 COPY . .
 
-# Publica
 RUN dotnet publish OldWorldBazaarAPI/OldWorldBazaarAPI.csproj \
     -c Release \
     -o /app/publish \
